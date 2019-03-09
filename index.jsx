@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from 'react';
 import {Helmet} from "react-helmet";
-import {FaPlayCircle} from "react-icons/fa";
-import {Button, Container, Heading, Hero, Icon, Section} from 'react-bulma-components';
+import {FaExclamationTriangle, FaPlayCircle} from "react-icons/fa";
+import {Button, Container, Heading, Hero, Icon, Notification, Section} from 'react-bulma-components';
 
 import 'react-bulma-components/dist/react-bulma-components.min.css';
 
@@ -24,28 +24,48 @@ const Index = () => {
 
         <Helmet>
             <meta charSet="UTF-8"/>
-            <title>Page Title</title>
+            <title>Facebook likes to Amazon wishlist</title>
         </Helmet>
 
-        <Hero color="dark">
-            <Hero.Body>
-                <Container>
-                    <Heading>Facebook likes to Amazon wishlist</Heading>
-                    <Heading subtitle>Find <strong>Amazon</strong> products related to
-                        your <strong>Facebook</strong> likes!</Heading>
-                    {(likes === null) && (
-                        <Button
-                            size={"medium"}
-                            loading={isLoadingLikes}
-                            onClick={() => loadFacebookLikes(setLoadingLikes, setLikes)}
-                            color="link">
-                            <Icon><FaPlayCircle/></Icon>
-                            <span>Start loading Facebook likes!</span>
-                        </Button>
-                    )}
-                </Container>
-            </Hero.Body>
-        </Hero>
+        {(process.env.HAS_MODIFIED_DOTENV === 'false') && (
+            <Hero color="dark">
+                <Hero.Body>
+                    <Container>
+                        <Heading>Facebook likes to Amazon wishlist</Heading>
+                        <Heading subtitle>Find <strong>Amazon</strong> products related to
+                            your <strong>Facebook</strong> likes!</Heading>
+
+                        <Notification color="danger">
+                            <Icon><FaExclamationTriangle/></Icon>
+                            <span>Please modify your .env file first!</span>
+                        </Notification>
+
+                    </Container>
+                </Hero.Body>
+            </Hero>
+        )}
+
+        {(process.env.HAS_MODIFIED_DOTENV === 'true') && (
+            <Hero color="dark">
+                <Hero.Body>
+                    <Container>
+                        <Heading>Facebook likes to Amazon wishlist</Heading>
+                        <Heading subtitle>Find <strong>Amazon</strong> products related to
+                            your <strong>Facebook</strong> likes!</Heading>
+                        {(likes === null) && (
+                            <Button
+                                size={"medium"}
+                                loading={isLoadingLikes}
+                                onClick={() => loadFacebookLikes(setLoadingLikes, setLikes)}
+                                color="link">
+                                <Icon><FaPlayCircle/></Icon>
+                                <span>Start loading Facebook likes!</span>
+                            </Button>
+                        )}
+                    </Container>
+                </Hero.Body>
+            </Hero>
+        )}
 
         {likes !== null && (
             <Section>
