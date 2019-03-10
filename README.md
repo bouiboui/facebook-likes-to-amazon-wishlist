@@ -7,7 +7,7 @@ yarn global add zero
 ```
 ### Install
 ```sh
-# (Recommended) Read the blog post first (I will update the URL when it's published)
+# (Recommended) Read the blog post first (see Github repository URL)
 # Modify the .env file with the correct values
 yarn
 ```
