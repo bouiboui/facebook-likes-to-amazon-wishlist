@@ -4,7 +4,7 @@ import {FaRegStar, FaStar, FaStarHalfAlt} from "react-icons/fa";
 
 const StarsToIcon = ({stars}) => {
     if (!(stars && stars.length)) return null;
-    const rating = stars.replace('a-icon a-icon-star a-star-', '');
+    const [rating] = stars.match(/\d(?:-\d)?/);
     if (rating.length < 1) return null;
 
     const halfStar = rating.indexOf('-5') > 0;

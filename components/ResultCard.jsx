@@ -8,8 +8,10 @@ const ResultCard = ({data}) => {
 
     const {image, link, price, stars, title} = data;
 
+    const absoluteLink = link.slice(0, 1) === '/' ? (process.env.AMAZON_BASE_URL + link) : link;
+
     return <Card>
-        <a href={link}><Card.Image size="square" src={image}/></a>
+        <a href={absoluteLink}><Card.Image size="square" src={image}/></a>
         <Card.Content>
             <Media>
                 <Media.Item>
@@ -25,7 +27,7 @@ const ResultCard = ({data}) => {
                 <div>{price}</div>
             </Card.Footer.Item>
             <Card.Footer.Item>
-                <a href={link} target="_blank">
+                <a href={absoluteLink} target="_blank">
                     <Icon><FaExternalLinkAlt/></Icon> Amazon</a>
             </Card.Footer.Item>
         </Card.Footer>
