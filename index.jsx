@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from 'react';
-import {Helmet} from "react-helmet";
 import {FaExclamationTriangle, FaPlayCircle} from "react-icons/fa";
 import {Button, Container, Heading, Hero, Icon, Notification, Section} from 'react-bulma-components';
+import {Helmet} from "react-helmet";
 
 import 'react-bulma-components/dist/react-bulma-components.min.css';
 
@@ -22,37 +22,28 @@ const Index = () => {
 
     return <Fragment>
 
+
         <Helmet>
             <meta charSet="UTF-8"/>
             <title>Facebook likes to Amazon wishlist</title>
         </Helmet>
 
-        {(process.env.HAS_MODIFIED_DOTENV === 'false') && (
-            <Hero color="dark">
-                <Hero.Body>
-                    <Container>
-                        <Heading>Facebook likes to Amazon wishlist</Heading>
-                        <Heading subtitle>Find <strong>Amazon</strong> products related to
-                            your <strong>Facebook</strong> likes!</Heading>
+        <Hero color="dark">
+            <Hero.Body>
+                <Container>
+                    <Heading>Facebook likes to Amazon wishlist</Heading>
+                    <Heading subtitle>Find <strong>Amazon</strong> products related to
+                        your <strong>Facebook</strong> likes!</Heading>
 
+                    {(process.env.HAS_MODIFIED_DOTENV === 'false') && (
                         <Notification color="danger">
                             <Icon><FaExclamationTriangle/></Icon>
-                            <span>Please modify your .env file first!</span>
+                            <span>Please modify your .env file first, then restart the server!</span>
                         </Notification>
+                    )}
 
-                    </Container>
-                </Hero.Body>
-            </Hero>
-        )}
-
-        {(process.env.HAS_MODIFIED_DOTENV === 'true') && (
-            <Hero color="dark">
-                <Hero.Body>
-                    <Container>
-                        <Heading>Facebook likes to Amazon wishlist</Heading>
-                        <Heading subtitle>Find <strong>Amazon</strong> products related to
-                            your <strong>Facebook</strong> likes!</Heading>
-                        {(likes === null) && (
+                    {(process.env.HAS_MODIFIED_DOTENV === 'true') && (
+                        (likes === null) && (
                             <Button
                                 size={"medium"}
                                 loading={isLoadingLikes}
@@ -61,10 +52,12 @@ const Index = () => {
                                 <Icon><FaPlayCircle/></Icon>
                                 <span>Start loading Facebook likes!</span>
                             </Button>
-                        )}
-                    </Container>
-                </Hero.Body>
-            </Hero>
+                        )
+                    )}
+
+                </Container>
+            </Hero.Body>
+        </Hero>
         )}
 
         {likes !== null && (
