@@ -1,9 +1,9 @@
-require('dotenv').load();
+require('dotenv').config();
 
-const db = require('../lib/db');
-const md5 = require('../lib/md5');
+const db = require('../../../lib/db');
+const md5 = require('../../../lib/md5');
 
-const fetchAmazonSearchResults = require('../lib/fetch-amazon-search-results');
+const fetchAmazonSearchResults = require('../../../lib/fetch-amazon-search-results');
 
 const amazon = {
 
@@ -25,9 +25,7 @@ const amazon = {
 };
 
 module.exports = async (req, res) => {
-
-    const [, query] = req.params;
+    const {q: query} = req.params;
     const results = await amazon.getSearchResults(query);
     return res.json(results);
-
 };
